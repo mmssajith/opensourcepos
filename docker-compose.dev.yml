@@ -5,6 +5,14 @@ volumes:
         driver: local
     mysql:
         driver: local
+    vendor:
+        driver: local
+    resources:
+        driver: local
+    menubar:
+        driver: local
+    header:
+        driver: local
 
 networks:
     app_net:
@@ -20,13 +28,21 @@ services:
         networks:
             - app_net
         volumes:
-            - ./app/Database/database.sql:/docker-entrypoint-initdb.d/database.sql
+            - ./app/Database/tables.sql:/docker-entrypoint-initdb.d/01_tables.sql
+            - ./app/Database/constraints.sql:/docker-entrypoint-initdb.d/02_constraints.sql
+            - ./app/Database/docker_mysql.cnf:/etc/mysql/conf.d/ospos.cnf:ro
             - mysql:/var/lib/mysql:rw
         environment:
             - MYSQL_ROOT_PASSWORD=pointofsale
             - MYSQL_DATABASE=ospos
             - MYSQL_USER=admin
             - MYSQL_PASSWORD=pointofsale
+        healthcheck:
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+            interval: 5s
+            timeout: 5s
+            retries: 10
+            start_period: 10s
     ospos:
         build:
             context: .
@@ -38,13 +54,18 @@ services:
         restart: always
         user: "${USERID}:${GROUPID}"
         depends_on:
-            - mysql
+            mysql:
+                condition: service_healthy
         ports:
             - "80:80"
         networks:
             - app_net
         volumes:
             - .:/app
+            - vendor:/app/vendor
+            - resources:/app/public/resources
+            - menubar:/app/public/images/menubar
+            - header:/app/app/Views/partial
         environment:
             - CI_ENVIRONMENT=development
             - MYSQL_USERNAME=admin

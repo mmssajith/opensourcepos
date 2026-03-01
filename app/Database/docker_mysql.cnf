@@ -1,5 +1,6 @@
 [mysqld]
 sql_mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+log_warnings=1
 
 key_buffer        = 16M
 max_allowed_packet = 1M
@@ -9,7 +10,7 @@ max-heap-table-size            = 32M
 query_cache_limit    = 4M
 query_cache_size = 32M
 query_cache_type = ON
-log_slow_queries = OFF
+slow_query_log = OFF
 innodb_buffer_pool_size = 56M
 innodb_log_file_size = 15M
 thread_cache_size = 4
