@@ -28,7 +28,17 @@ encryption.key = ${ENCRYPTION_KEY}
 logger.threshold = 0
 app.db_log_enabled = false
 EOF
+    echo "Generated .env:"
+    cat /app/.env
 fi
+
+echo "--- Environment check ---"
+echo "MYSQL_HOST_NAME=${MYSQL_HOST_NAME}"
+echo "MYSQL_DB_NAME=${MYSQL_DB_NAME}"
+echo "MYSQL_USERNAME=${MYSQL_USERNAME}"
+echo "CI_ENVIRONMENT=${CI_ENVIRONMENT}"
+echo "ENCRYPTION_KEY set: $([ -n "${ENCRYPTION_KEY}" ] && echo yes || echo NO - MISSING)"
+echo "-------------------------"
 
 # Ensure vendor dependencies are installed
 if [ ! -f /app/vendor/autoload.php ]; then
@@ -50,11 +60,13 @@ else
 fi
 
 echo "Running migrations..."
-if php /app/spark migrate --all -n App 2>&1; then
+MIGRATE_OUTPUT=$(php /app/spark migrate --all -n App 2>&1)
+MIGRATE_EXIT=$?
+echo "$MIGRATE_OUTPUT"
+if [ $MIGRATE_EXIT -eq 0 ]; then
     echo "Migrations complete."
 else
-    echo "Warning: migrations failed. Dumping spark environment for diagnostics..."
-    php /app/spark env 2>&1 || true
+    echo "WARNING: migrations failed with exit code $MIGRATE_EXIT"
     echo "Continuing startup despite migration failure..."
 fi
 
