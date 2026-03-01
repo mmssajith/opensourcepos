@@ -57,7 +57,7 @@ services:
             mysql:
                 condition: service_healthy
         ports:
-            - "80:80"
+            - "8010:80"
         networks:
             - app_net
         volumes:
