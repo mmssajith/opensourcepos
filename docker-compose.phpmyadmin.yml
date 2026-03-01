@@ -11,7 +11,7 @@ services:
             mysql:
                 condition: service_healthy
         ports:
-            - "8000:80"
+            - "8000:8010"
         networks:
             - app_net
         environment:
