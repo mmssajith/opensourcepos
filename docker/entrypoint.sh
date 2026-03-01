@@ -30,8 +30,14 @@ app.db_log_enabled = false
 EOF
 fi
 
-echo "Regenerating autoloader..."
-composer dump-autoload -d /app --quiet
+# Ensure vendor dependencies are installed
+if [ ! -f /app/vendor/autoload.php ]; then
+    echo "Vendor directory missing or incomplete. Running composer install..."
+    composer install -d /app --no-interaction --no-progress
+else
+    echo "Regenerating autoloader..."
+    composer dump-autoload -d /app --quiet
+fi
 
 echo "Checking if database schema is initialized..."
 if ! $MYSQL -e "SELECT 1 FROM ospos_app_config LIMIT 1;" > /dev/null 2>&1; then
@@ -44,10 +50,12 @@ else
 fi
 
 echo "Running migrations..."
-if php /app/spark migrate --all -n App; then
+if php /app/spark migrate --all -n App 2>&1; then
     echo "Migrations complete."
 else
-    echo "Warning: migrations failed, check logs. Continuing startup..."
+    echo "Warning: migrations failed. Dumping spark environment for diagnostics..."
+    php /app/spark env 2>&1 || true
+    echo "Continuing startup despite migration failure..."
 fi
 
 exec apache2-foreground
