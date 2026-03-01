@@ -43,6 +43,30 @@ services:
             timeout: 5s
             retries: 10
             start_period: 10s
+    migrate:
+        build:
+            context: .
+            args:
+                - USERID=${USERID}
+                - GROUPID=${GROUPID}
+            target: ospos_dev
+        container_name: ospos_migrate
+        restart: on-failure
+        depends_on:
+            mysql:
+                condition: service_healthy
+        networks:
+            - app_net
+        volumes:
+            - vendor:/app/vendor
+        environment:
+            - CI_ENVIRONMENT=${CI_ENVIRONMENT:-production}
+            - MYSQL_USERNAME=admin
+            - MYSQL_PASSWORD=pointofsale
+            - MYSQL_DB_NAME=ospos
+            - MYSQL_HOST_NAME=mysql
+            - ENCRYPTION_KEY=hex2bin:57cd572ac23419d889bf423630c7b37ceb584f2456c14e558e95947d1a510f19
+        entrypoint: ["/migrate.sh"]
     ospos:
         build:
             context: .

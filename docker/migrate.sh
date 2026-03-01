@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+MYSQL="mysql --connect-timeout=10 --skip-ssl -h${MYSQL_HOST_NAME} -u${MYSQL_USERNAME} -p${MYSQL_PASSWORD} ${MYSQL_DB_NAME}"
+
 # Generate .env from Docker environment variables if not present
 if [ ! -f /app/.env ]; then
     echo "Generating .env from environment variables..."
@@ -33,8 +35,19 @@ if [ ! -f /app/vendor/autoload.php ]; then
     echo "Vendor directory missing. Running composer install..."
     composer install -d /app --no-interaction --no-progress
 else
-    echo "Regenerating autoloader..."
     composer dump-autoload -d /app --quiet
 fi
 
-exec apache2-foreground
+echo "Checking if database schema is initialized..."
+if ! $MYSQL -e "SELECT 1 FROM ospos_app_config LIMIT 1;" > /dev/null 2>&1; then
+    echo "Loading base schema..."
+    $MYSQL < /app/app/Database/tables.sql
+    $MYSQL < /app/app/Database/constraints.sql
+    echo "Base schema loaded."
+else
+    echo "Schema already initialized."
+fi
+
+echo "Running migrations..."
+php /app/spark migrate --all -n App
+echo "Migrations complete."

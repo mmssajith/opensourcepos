@@ -59,6 +59,7 @@ RUN yes | pecl install xdebug \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 COPY docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY docker/migrate.sh /migrate.sh
+RUN chmod +x /entrypoint.sh /migrate.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
