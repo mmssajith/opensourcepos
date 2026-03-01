@@ -30,6 +30,9 @@ app.db_log_enabled = false
 EOF
 fi
 
+echo "Regenerating autoloader..."
+composer dump-autoload -d /app --quiet
+
 echo "Checking if database schema is initialized..."
 if ! $MYSQL -e "SELECT 1 FROM ospos_app_config LIMIT 1;" > /dev/null 2>&1; then
     echo "Loading base schema..."
