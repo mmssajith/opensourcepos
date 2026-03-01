@@ -60,9 +60,10 @@ else
 fi
 
 echo "Running migrations..."
-MIGRATE_OUTPUT=$(php /app/spark migrate --all -n App 2>&1)
+set +e
+php /app/spark migrate --all -n App 2>&1
 MIGRATE_EXIT=$?
-echo "$MIGRATE_OUTPUT"
+set -e
 if [ $MIGRATE_EXIT -eq 0 ]; then
     echo "Migrations complete."
 else
