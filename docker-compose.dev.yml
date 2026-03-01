@@ -74,3 +74,4 @@ services:
             - MYSQL_HOST_NAME=mysql
             - PHP_TIMEZONE=UTC
             - XDEBUG_CONFIG=client_host=172.17.0.1
+            - ENCRYPTION_KEY=hex2bin:57cd572ac23419d889bf423630c7b37ceb584f2456c14e558e95947d1a510f19
