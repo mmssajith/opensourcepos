@@ -21,7 +21,7 @@ networks:
 services:
     mysql:
         image: mariadb:10.5
-        container_name: mysql
+        container_name: ospos_mysql
         restart: always
         expose:
             - "3306"
