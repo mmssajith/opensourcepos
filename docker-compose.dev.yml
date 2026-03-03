@@ -21,7 +21,7 @@ networks:
 services:
     mysql:
         image: mariadb:10.5
-        container_name: ospos_mysql
+        container_name: mysql
         restart: always
         expose:
             - "3306"
@@ -50,7 +50,7 @@ services:
                 - USERID=${USERID}
                 - GROUPID=${GROUPID}
             target: ospos_dev
-        container_name: ospos_migrate
+        container_name: opensourcepos-migrate
         restart: on-failure
         depends_on:
             mysql:
@@ -74,14 +74,14 @@ services:
                 - USERID=${USERID}
                 - GROUPID=${GROUPID}
             target: ospos_dev
-        container_name: ospos_dev
+        container_name: opensourcepos-ospos
         restart: always
         user: "${USERID}:${GROUPID}"
         depends_on:
             mysql:
                 condition: service_healthy
         ports:
-            - "8010:80"
+            - "127.0.0.1:8090:80"
         networks:
             - app_net
         volumes:
@@ -91,7 +91,8 @@ services:
             - menubar:/app/public/images/menubar
             - header:/app/app/Views/partial
         environment:
-            - CI_ENVIRONMENT=development
+            - CI_ENVIRONMENT=${CI_ENVIRONMENT:-production}
+            - FORCE_HTTPS=true
             - MYSQL_USERNAME=admin
             - MYSQL_PASSWORD=pointofsale
             - MYSQL_DB_NAME=ospos
@@ -107,7 +108,7 @@ services:
             mysql:
                 condition: service_healthy
         ports:
-            - "8080:80"
+            - "8081:80"
         networks:
             - app_net
         environment:
