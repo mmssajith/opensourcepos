@@ -20,6 +20,11 @@ $request = Services::request();
     <base href="<?= base_url() ?>">
     <title><?= esc($config['company']) . ' | ' . lang('Common.powered_by') . ' OSPOS ' . esc(config('App')->application_version) ?></title>
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#2c3e50">
+    <link rel="apple-touch-icon" href="images/icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="stylesheet" href="<?= 'resources/bootswatch/' . (empty($config['theme']) ? 'flatly' : esc($config['theme'])) . '/bootstrap.min.css' ?>">
 
     <?php if (ENVIRONMENT == 'development' || get_cookie('debug') == 'true' || $request->getGet('debug') == 'true') : ?>

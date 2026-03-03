@@ -1,3 +1,6 @@
+# Serve .webmanifest with correct MIME type
+AddType application/manifest+json .webmanifest
+
 # Disable directory browsing
 Options All -Indexes
 

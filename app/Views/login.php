@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="resources/bootswatch5/<?= "$theme" ?>/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
     <meta name="theme-color" content="#2c3e50">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="images/icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 
 <body class="bg-secondary-subtle d-flex flex-column">
@@ -115,6 +119,12 @@
             <span><?= lang('Common.software_title') ?></span>
         </div>
     </footer>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
 </body>
 
 </html>
