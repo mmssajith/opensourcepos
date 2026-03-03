@@ -135,6 +135,8 @@ gulp.task('debug-js', function() {
         './node_modules/clipboard/dist/clipboard.js',
         './public/js/imgpreview.full.jquery.js',
         './public/js/manage_tables.js',
+        './node_modules/html5-qrcode/html5-qrcode.min.js',
+        './public/js/barcode_scanner.js',
         './public/js/nominatim.autocomplete.js']).pipe(rev()).pipe(gulp.dest('public/resources/js'));
     return gulp.src('./app/Views/partial/header.php').pipe(inject(debugjs,{addRootSlash: false, ignorePath: '/public/', starttag: '<!-- inject:debug:js -->'})).pipe(gulp.dest('./app/Views/partial'));
 });
@@ -172,11 +174,13 @@ gulp.task('prod-js', function() {
         './node_modules/chartist-plugin-axistitle/dist/chartist-plugin-axistitle.min.js',
         './node_modules/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js',
         './node_modules/chartist-plugin-barlabels/dist/chartist-plugin-barlabels.min.js',
-        './node_modules/tableexport.jquery.plugin/tableExport.min.js'], { allowEmpty: true });
+        './node_modules/tableexport.jquery.plugin/tableExport.min.js',
+        './node_modules/html5-qrcode/html5-qrcode.min.js'], { allowEmpty: true });
 
     var opensourcepos2js = gulp.src(['./node_modules/bootstrap-daterangepicker/daterangepicker.js',
         './public/js/imgpreview.full.jquery.js',
         './public/js/manage_tables.js',
+        './public/js/barcode_scanner.js',
         './public/js/nominatim.autocomplete.js']).pipe(uglify());
 
 

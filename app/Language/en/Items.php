@@ -60,6 +60,7 @@ return [
     "item_id"                            => "",
     "item_number"                        => "Barcode",
     "item_number_duplicate"              => "Item Number is already present in the database.",
+    "scan_barcode"                       => "Scan Barcode",
     "kit"                                => "Kit",
     "location"                           => "Location",
     "low_inventory_items"                => "Out Of Stock Items",

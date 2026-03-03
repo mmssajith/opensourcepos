@@ -42,6 +42,11 @@
                         'class' => 'form-control input-sm',
                         'value' => $item_info->item_number
                     ]) ?>
+                    <span class="input-group-btn">
+                        <button type="button" id="scan_item_number_btn" class="btn btn-default btn-sm" title="<?= lang('Items.scan_barcode') ?>" style="display:none;">
+                            <span class="glyphicon glyphicon-camera"></span>
+                        </button>
+                    </span>
                 </div>
             </div>
         </div>
@@ -454,6 +459,8 @@
 <script type="text/javascript">
     // Validation and submit handling
     $(document).ready(function() {
+        barcode_scanner.bind('#scan_item_number_btn', '#item_number');
+
         $('#new').click(function() {
             let stay_open = true;
             $('#item_form').submit();

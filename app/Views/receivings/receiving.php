@@ -90,6 +90,11 @@ if (isset($success)) {
             <li class="pull-left">
                 <?= form_input(['name' => 'item', 'id' => 'item', 'class' => 'form-control input-sm', 'size' => '50', 'tabindex' => '1']) ?>
             </li>
+            <li class="pull-left" id="barcode_scanner_li" style="display:none;">
+                <button type="button" id="barcode_scanner_btn" class="btn btn-default btn-sm" title="<?= lang(ucfirst($controller_name) . '.scan_barcode') ?>">
+                    <span class="glyphicon glyphicon-camera"></span>
+                </button>
+            </li>
 
             <li class="pull-right">
                 <button id="new_item_button" class="btn btn-info btn-sm pull-right modal-dlg" data-btn-submit="<?= lang('Common.submit') ?>" data-btn-new="<?= lang('Common.new') ?>" data-href="<?= "items/view" ?>" title="<?= lang('Sales.new_item') ?>">
@@ -538,6 +543,14 @@ if (isset($success)) {
             $('#cart_' + $(this).attr('data-line')).submit();
         });
 
+    });
+</script>
+
+<?= view('partial/barcode_scanner_modal') ?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        barcode_scanner.init('#add_item_form', '#item');
     });
 </script>
 

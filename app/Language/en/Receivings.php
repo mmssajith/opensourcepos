@@ -24,6 +24,7 @@ return [
     "error_requisition"            => "Unable to move Inventory from or to the same Stock Location.",
     "find_or_scan_item"            => "Find or Scan Item",
     "find_or_scan_item_or_receipt" => "Find or Scan Item or Receipt",
+    "scan_barcode"                 => "Scan Barcode",
     "id"                           => "Receiving ID",
     "item_name"                    => "Item Name",
     "mode"                         => "Receiving Mode",

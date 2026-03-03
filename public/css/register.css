@@ -106,3 +106,141 @@ input#amount_tendered:disabled {
 .alert {
     margin-bottom: 5px;
 }
+
+@media (max-width: 767px) {
+    #register_wrapper {
+        float: none;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    #overall_sale {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+        padding-top: 1em;
+        font-size: 14px;
+    }
+
+    /* Register table horizontal scroll */
+    #register {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    #register th,
+    #register td {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+
+    /* Add item form stacking */
+    #add_item_form .panel-body,
+    #mode_form .panel-body {
+        padding: 0.5em;
+    }
+
+    #add_item_form ul li,
+    #mode_form ul li {
+        margin-left: 0;
+        margin-bottom: 4px;
+    }
+
+    #add_item_form .form-control,
+    #mode_form .form-control {
+        font-size: 16px;
+        min-height: 38px;
+    }
+
+    /* Payment panel */
+    #payment_details {
+        float: none;
+        padding: 0.5em;
+    }
+
+    /* Sale action buttons */
+    #overall_sale .btn {
+        min-height: 44px;
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    /* Payment totals table */
+    #payment_details,
+    #buttons_sale,
+    #suspended_sales_table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    /* Form groups in overall_sale */
+    #overall_sale .form-group {
+        margin-bottom: 6px;
+    }
+
+    #overall_sale .form-control {
+        font-size: 16px;
+        min-height: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    #register th,
+    #register td {
+        padding: 4px 6px;
+        font-size: 12px;
+    }
+
+    #overall_sale .btn {
+        font-size: 13px;
+        padding: 8px;
+    }
+}
+
+/* ==============================
+   Barcode Camera Scanner
+   ============================== */
+
+#barcode_scanner_li {
+    margin-left: 0.5em;
+}
+
+#barcode_scanner_btn {
+    padding: 4px 8px;
+}
+
+#barcode_scanner_reader {
+    width: 100%;
+    min-height: 300px;
+}
+
+#barcode_scanner_reader video {
+    width: 100% !important;
+    border-radius: 4px;
+}
+
+#barcode_scanner_status {
+    font-size: 13px;
+    min-height: 1.5em;
+}
+
+@media (max-width: 767px) {
+    #barcodeScannerModal .modal-dialog {
+        margin: 8px;
+        width: auto;
+    }
+
+    #barcode_scanner_reader {
+        min-height: 250px;
+    }
+
+    #barcode_scanner_btn {
+        min-height: 38px;
+        min-width: 38px;
+        padding: 6px 10px;
+    }
+}

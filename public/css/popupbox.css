@@ -84,3 +84,54 @@
 #tax_rates td {
     text-align: center;
 }
+
+/* ==============================
+   Mobile Responsive - Modal Forms
+   ============================== */
+
+@media (max-width: 767px) {
+    #required_fields_message {
+        font-size: 12px;
+        padding: 0 5px;
+    }
+
+    .error_message_box {
+        margin-left: 10px;
+        font-size: 12px;
+    }
+
+    #customer_basic_info,
+    #item_basic_info,
+    #item_number_info,
+    #supplier_basic_info,
+    #sale_basic_info,
+    #employee_basic_info,
+    #employee_login_info,
+    #employee_permission_info {
+        padding: 3px;
+    }
+
+    /* Tables inside modals scroll horizontally */
+    #item_kit_items,
+    #items_count_details,
+    #tax_rates {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Permission list compact */
+    #permission_list ul li {
+        padding-left: 10px;
+    }
+
+    /* File input (image upload) */
+    .fileinput .thumbnail {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    .fileinput .btn {
+        margin-top: 4px;
+    }
+}

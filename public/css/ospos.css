@@ -19,6 +19,38 @@ a.none {
     padding: 0.2em;
 }
 
+.topbar .container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+@media (max-width: 767px) {
+    .topbar .container {
+        flex-wrap: wrap;
+        padding: 0.3em 10px;
+    }
+
+    .topbar .navbar-center {
+        order: -1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.2em;
+    }
+
+    .topbar .navbar-left {
+        float: none;
+        flex: 1;
+        font-size: 11px;
+    }
+
+    .topbar .navbar-right {
+        float: none !important;
+        margin: 0 !important;
+        font-size: 11px;
+    }
+}
+
 /* Add container-xxl width from Bootstrap 5 */
 @media (min-width: 1400px) {
     .container {
@@ -179,4 +211,402 @@ label.required {
 /* Recreate font-monospace class from Bootstrap 5 */
 .font-monospace {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/* ==============================
+   Mobile Responsive Styles
+   ============================== */
+
+@media (max-width: 767px) {
+
+    /* --- Prevent horizontal overflow globally --- */
+    html, body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        overflow-x: hidden;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Neutralize Bootstrap row negative margins so content doesn't overflow container padding */
+    .container > .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* --- Navbar / Navigation --- */
+    .navbar-collapse {
+        max-height: 70vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .navbar-nav > li > a {
+        padding: 12px 15px;
+        min-height: 44px;
+    }
+
+    .navbar .menu-icon {
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .navbar .menu-icon img {
+        width: 20px;
+    }
+
+    .navbar .menu-icon br {
+        display: none;
+    }
+
+    .navbar-toggle {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .navbar-brand {
+        display: none !important;
+    }
+
+    /* --- Forms: stack labels above inputs --- */
+    .form-horizontal .control-label {
+        text-align: left !important;
+        width: 100% !important;
+        float: none !important;
+        padding-top: 0;
+        padding-bottom: 4px;
+        padding-left: 15px;
+    }
+
+    .form-horizontal .col-xs-1,
+    .form-horizontal .col-xs-2,
+    .form-horizontal .col-xs-3,
+    .form-horizontal .col-xs-4,
+    .form-horizontal .col-xs-5,
+    .form-horizontal .col-xs-6,
+    .form-horizontal .col-xs-7,
+    .form-horizontal .col-xs-8,
+    .form-horizontal .col-xs-9,
+    .form-horizontal .col-xs-10,
+    .form-horizontal .col-xs-11,
+    .form-horizontal .col-xs-12 {
+        width: 100%;
+        float: none;
+    }
+
+    .form-horizontal .form-group {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .form-control, .input-sm {
+        font-size: 16px;
+    }
+
+    /* --- Title bar --- */
+    #title_bar {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 0.75em;
+        padding: 0.5em 5px;
+    }
+
+    #title_bar .btn {
+        float: none !important;
+    }
+
+    #page_title {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    /* --- Toolbar --- */
+    #toolbar {
+        margin-bottom: 0.75em;
+        padding: 0 5px;
+    }
+
+    #toolbar .form-inline,
+    #toolbar .pull-left,
+    #toolbar .btn-toolbar {
+        float: none !important;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    #toolbar .btn {
+        flex: 1 1 auto;
+        min-height: 40px;
+    }
+
+    #toolbar .form-control,
+    #toolbar .selectpicker,
+    #toolbar #daterangepicker {
+        width: 100% !important;
+        min-height: 36px;
+    }
+
+    /* --- Table holder spacing --- */
+    #table_holder {
+        padding: 0 5px;
+    }
+
+    /* Bootstrap Table toolbar stacks vertically */
+    .fixed-table-toolbar .bs-bars,
+    .fixed-table-toolbar .columns,
+    .fixed-table-toolbar .search {
+        float: none !important;
+        display: block;
+        margin-bottom: 0.4em;
+    }
+
+    .fixed-table-toolbar .search input {
+        width: 100%;
+    }
+
+    .fixed-table-toolbar .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* --- Tables --- */
+    .table-responsive,
+    .fixed-table-body {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .fixed-table-container {
+        overflow-x: auto;
+    }
+
+    /* Table pagination */
+    .fixed-table-pagination {
+        text-align: center;
+    }
+
+    .fixed-table-pagination .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .fixed-table-pagination .pagination > li > a {
+        min-width: 40px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pagination-detail {
+        text-align: center;
+        margin-bottom: 0.5em;
+    }
+
+    /* --- Modals: near full-screen on mobile --- */
+    .modal-dlg .modal-dialog,
+    .modal-dlg-wide .modal-dialog {
+        width: auto !important;
+        margin: 8px;
+    }
+
+    .modal-dialog {
+        margin: 8px;
+    }
+
+    .modal-body {
+        max-height: calc(100vh - 130px);
+        overflow-y: auto;
+        padding: 15px;
+    }
+
+    .modal-content {
+        border-radius: 4px;
+    }
+
+    .modal-header {
+        padding: 12px 15px;
+    }
+
+    .modal-footer {
+        padding: 10px 15px;
+    }
+
+    /* --- Buttons --- */
+    .btn {
+        min-height: 38px;
+        padding: 8px 12px;
+    }
+
+    .btn-sm {
+        min-height: 34px;
+        padding: 6px 10px;
+    }
+
+    .btn-group > .btn {
+        margin-bottom: 2px;
+    }
+
+    .btn-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .pull-right {
+        float: none !important;
+    }
+
+    .pull-left {
+        float: none !important;
+    }
+
+    /* --- Home page module grid --- */
+    #home_module_list,
+    #office_module_list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 1em 0;
+    }
+
+    .module_item {
+        min-width: 5em;
+        flex: 0 0 calc(33.33% - 10px);
+        max-width: calc(33.33% - 10px);
+    }
+
+    .module_item img {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* --- Config page --- */
+    #config_info .wide {
+        width: 100%;
+    }
+
+    .tab-content {
+        padding: 10px 5px;
+    }
+
+    .nav-tabs {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .nav-tabs > li {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+
+    .nav-tabs > li > a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    /* --- Inline form elements stack --- */
+    .form-inline .form-group {
+        display: block;
+        margin-bottom: 0.5em;
+    }
+
+    .form-inline .form-control {
+        width: 100%;
+    }
+
+    /* --- Footer --- */
+    #footer {
+        margin-top: 2em;
+        padding: 1em 0.5em;
+        font-size: 11px;
+    }
+
+    /* --- Bootstrap Select (dropdown) improvements --- */
+    .bootstrap-select {
+        width: 100% !important;
+    }
+
+    .bootstrap-select .dropdown-menu {
+        max-height: 250px;
+    }
+
+    /* --- Input groups --- */
+    .input-group {
+        width: 100%;
+    }
+
+    /* --- Alerts --- */
+    .alert {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    /* --- Radio/checkbox inline wrapping --- */
+    .radio-inline,
+    .checkbox-inline {
+        display: block;
+        margin-left: 0;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        min-height: 36px;
+    }
+}
+
+/* ==============================
+   Small Phone Styles (≤480px)
+   ============================== */
+
+@media (max-width: 480px) {
+    .wrapper {
+        font-size: 14px;
+    }
+
+    /* Two-column module grid on small phones */
+    .module_item {
+        flex: 0 0 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+
+    #page_title {
+        font-size: 16px;
+    }
+
+    /* Stack title bar buttons fully */
+    #title_bar .btn {
+        width: 100%;
+    }
+
+    /* Tabs scroll horizontally on very small screens */
+    .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    .nav-tabs > li {
+        flex: 0 0 auto;
+    }
+
+    /* Pagination compact */
+    .fixed-table-pagination .pagination > li > a {
+        min-width: 34px;
+        min-height: 34px;
+        font-size: 12px;
+        padding: 4px;
+    }
 }

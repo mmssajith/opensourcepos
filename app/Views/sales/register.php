@@ -125,6 +125,11 @@ helper('url');
                     <?= form_input(['name' => 'item', 'id' => 'item', 'class' => 'form-control input-sm', 'size' => '50', 'tabindex' => ++$tabindex]) ?>
                     <span class="ui-helper-hidden-accessible" role="status"></span>
                 </li>
+                <li class="pull-left" id="barcode_scanner_li" style="display:none;">
+                    <button type="button" id="barcode_scanner_btn" class="btn btn-default btn-sm" title="<?= lang(ucfirst($controller_name) . '.scan_barcode') ?>">
+                        <span class="glyphicon glyphicon-camera"></span>
+                    </button>
+                </li>
                 <li class="pull-right">
                     <button id="new_item_button" class="btn btn-info btn-sm pull-right modal-dlg" data-btn-new="<?= lang('Common.new') ?>" data-btn-submit="<?= lang('Common.submit') ?>" data-href="<?= "items/view" ?>" title="<?= lang(ucfirst($controller_name) . ".new_item") ?>">
                         <span class="glyphicon glyphicon-tag">&nbsp;</span><?= lang(ucfirst($controller_name) . ".new_item") ?>
@@ -880,6 +885,14 @@ helper('url');
                 break;
         }
     }
+</script>
+
+<?= view('partial/barcode_scanner_modal') ?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        barcode_scanner.init('#add_item_form', '#item');
+    });
 </script>
 
 <?= view('partial/footer') ?>

@@ -46,3 +46,55 @@
     stroke-opacity: 0.2;
     stroke-width: 20px;
 }
+
+/* ==============================
+   Mobile Responsive - Reports
+   ============================== */
+
+@media (max-width: 767px) {
+    .report {
+        font-size: 0.8em;
+    }
+
+    /* Report tables horizontal scroll */
+    .report .table,
+    #report_summary .table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    /* Chart containers responsive */
+    .ct-chart {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #chart_report_summary {
+        margin-top: -50px;
+    }
+
+    /* Smaller chart labels on mobile */
+    .ct-label {
+        font-size: 0.9rem;
+    }
+
+    .ct-label.ct-horizontal {
+        -webkit-transform: rotate(-75deg);
+        -moz-transform: rotate(-75deg);
+        -ms-transform: rotate(-75deg);
+        -o-transform: rotate(-75deg);
+    }
+
+    #report_summary {
+        margin: 1em 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .ct-label {
+        font-size: 0.75rem;
+    }
+}

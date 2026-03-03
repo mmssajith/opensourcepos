@@ -75,6 +75,7 @@ return [
     "error_editing_item"               => "Error editing item",
     "find_or_scan_item"                => "Find or Scan Item",
     "find_or_scan_item_or_receipt"     => "Find or Scan Item or Receipt",
+    "scan_barcode"                     => "Scan Barcode",
     "giftcard"                         => "Gift Card",
     "giftcard_balance"                 => "Gift Card Balance",
     "giftcard_filter"                  => "",
